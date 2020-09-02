@@ -26,8 +26,10 @@ async def connect():
 
 async def getAndSend(device):
     power = await device.get_emeter_realtime()
+    monthly = await device.get_emeter_monthly()
     watt = power['power'] 
     voltage = power['voltage']
+    monthly_power = monthly[datetime.datetime.now().month]
     client.write_points([{
         "measurement": "power",
         "tags": {
@@ -35,7 +37,8 @@ async def getAndSend(device):
         },
         "fields": {
             "current_power": watt,
-            "current_voltage": voltage
+            "current_voltage": voltage,
+            "montly_power": monthly_power
         }
     }])
 
