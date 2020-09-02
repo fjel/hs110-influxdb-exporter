@@ -38,7 +38,7 @@ async def getAndSend(device):
         "fields": {
             "current_power": watt,
             "current_voltage": voltage,
-            "montly_power": monthly_power
+            "monthly_power": monthly_power
         }
     }])
 
